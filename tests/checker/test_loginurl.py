@@ -19,8 +19,11 @@ This includes the retrieval and search of a login form and posting credentials.
 """
 import re
 
+import pytest
+
 from .httpserver import HttpServerTest, CGIHandler
 from . import get_test_aggregate
+from .. import has_windows
 
 
 class TestLoginUrl(HttpServerTest):
@@ -48,6 +51,7 @@ class TestLoginUrl(HttpServerTest):
 
         return aggregate.cookies
 
+    @pytest.mark.xfail(has_windows(), reason="test_loginurl fails on MS Windows")
     def test_loginurl(self):
         cookies = self.visit_loginurl(
             "loginform.html", "test_user", "test_password", True

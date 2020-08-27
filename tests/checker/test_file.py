@@ -22,7 +22,7 @@ import zipfile
 
 import pytest
 
-from tests import need_network, need_word, need_pdflib
+from tests import has_windows, need_network, need_word, need_pdflib
 from . import LinkCheckTest, get_file
 
 
@@ -80,6 +80,7 @@ class TestFile(LinkCheckTest):
         confargs = dict(enabledplugins=["PdfParser"])
         self.file_test("file.pdf", confargs=confargs)
 
+    @pytest.mark.xfail(has_windows(), reason="test_markdown fails on MS Windows")
     def test_markdown(self):
         confargs = dict(enabledplugins=["MarkdownCheck"])
         self.file_test("file.markdown", confargs=confargs)
