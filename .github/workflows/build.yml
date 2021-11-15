@@ -148,3 +148,8 @@ jobs:
 
       - name: Run ${{ matrix.toxenv }}
         run: python -m tox -e ${{ matrix.toxenv }}
+
+      - name: Check translations
+        run: |
+          sudo apt install -y gettext
+          for po in po/*.po; do msgfmt -cv --statistics -o - ${po} >/dev/null; done
