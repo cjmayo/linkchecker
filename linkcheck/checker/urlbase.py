@@ -158,12 +158,15 @@ class UrlBase:
         if recursion_level == 0:
             self.add_intern_pattern()
         self.set_extern(self.url)
-        if self.extern[0] and self.extern[1]:
-            self.add_info(
-                _("The URL is outside of the domain filter, checked only syntax.")
-            )
-            if not self.has_result:
-                self.set_result(_("filtered"))
+        if self.extern[0]:
+            self.do_check_content = False
+            log.debug(LOG_CHECK, "Not checking content of %s, extern.", self.url)
+            if self.extern[1]:
+                self.add_info(
+                    _("The URL is outside of the domain filter, checked only syntax.")
+                )
+                if not self.has_result:
+                    self.set_result(_("filtered"))
 
     def init(
         self,
