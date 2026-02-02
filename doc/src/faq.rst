@@ -129,3 +129,10 @@ After this append a new Logging instance to the fileoutput.
    cfg = linkcheck.configuration.Configuration()
    cfg.logger_add(MyLogger)
    cfg['fileoutput'].append(cfg.logger_new(MyLogger.LoggerName))
+
+
+**Q: How *do* I enable a plugin?**
+
+Just add its name in brackets in the configuration file, like::
+
+  [HtmlSyntaxCheck]

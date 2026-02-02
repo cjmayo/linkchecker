@@ -486,12 +486,15 @@ EXAMPLE
     [filtering]
     ignorewarnings=http-moved-permanent
 
+    [AnchorCheck]
+
 PLUGINS
 -------
 
 All plugins have a separate section. If the section appears in the
 configuration file the plugin is enabled. Some plugins read extra
-options in their section.
+options in their section. In the above example, the ``AnchorCheck``
+plugin is enabled.
 
 AnchorCheck
 ^^^^^^^^^^^
